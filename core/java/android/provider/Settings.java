@@ -4754,6 +4754,13 @@ public final class Settings {
          */
         public static final String FORMAL_TEXT_INPUT = "formal_text_input";
 
+        /** @hide */
+        public static final String OMNI_BACK_GESTURE_HEIGHT = "back_gesture_height";
+
+        /** @hide */
+        private static final Validator OMNI_BACK_GESTURE_HEIGHT_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
+
         /**
          * Whether to display the 4g or lte network icon in the statusbar
          * @hide
@@ -4844,6 +4851,7 @@ public final class Settings {
             OMNI_QS_LAYOUT_COLUMNS,
             OMNI_QS_TILE_TITLE_VISIBILITY,
             OMNI_QS_QUICKBAR_COLUMNS,
+            OMNI_BACK_GESTURE_HEIGHT,
         };
 
         /**
@@ -4995,6 +5003,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OMNI_QS_LAYOUT_COLUMNS);
             PRIVATE_SETTINGS.add(OMNI_QS_TILE_TITLE_VISIBILITY);
             PRIVATE_SETTINGS.add(OMNI_QS_QUICKBAR_COLUMNS);
+            PRIVATE_SETTINGS.add(OMNI_BACK_GESTURE_HEIGHT);
         }
 
         /**
@@ -5112,6 +5121,7 @@ public final class Settings {
             VALIDATORS.put(OMNI_QS_LAYOUT_COLUMNS, OMNI_QS_LAYOUT_COLUMNS_VALIDATOR);
             VALIDATORS.put(OMNI_QS_TILE_TITLE_VISIBILITY, OMNI_QS_TILE_TITLE_VISIBILITY_VALIDATOR);
             VALIDATORS.put(OMNI_QS_QUICKBAR_COLUMNS, OMNI_QS_QUICKBAR_COLUMNS_VALIDATOR);
+            VALIDATORS.put(OMNI_BACK_GESTURE_HEIGHT, OMNI_BACK_GESTURE_HEIGHT_VALIDATOR);
         }
 
         /**
