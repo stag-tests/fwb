@@ -83,6 +83,13 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.hardware.display.DisplayManager;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.Point;
+import android.graphics.PointF;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.media.AudioAttributes;
 import android.metrics.LogMaker;
@@ -272,6 +279,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import dagger.Subcomponent;
+
+import com.android.systemui.ImageUtilities;
 
 public class StatusBar extends SystemUI implements DemoMode,
         ActivityStarter, OnUnlockMethodChangedListener,
@@ -519,6 +528,9 @@ public class StatusBar extends SystemUI implements DemoMode,
     private static ImageButton mDismissAllButton;
     protected static NotificationPanelView mStaticNotificationPanel;
     public static boolean mClearableNotifications;
+
+    public ImageView mQSBlurView;
+    private boolean blurperformed = false;
 
     // ensure quick settings is disabled until the current user makes it through the setup wizard
     @VisibleForTesting
@@ -970,6 +982,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         mStaticNotificationPanel = mNotificationPanel;
         mStackScroller = mStatusBarWindow.findViewById(R.id.notification_stack_scroller);
         mZenController.addCallback(this);
+        mQSBlurView = mStatusBarWindow.findViewById(R.id.qs_blur);
         NotificationListContainer notifListContainer = (NotificationListContainer) mStackScroller;
         mNotificationLogger.setUpWithContainer(notifListContainer);
 
@@ -1304,6 +1317,23 @@ public class StatusBar extends SystemUI implements DemoMode,
                 || action == MotionEvent.ACTION_CANCEL) {
             mHandler.removeCallbacks(mLongPressBrightnessChange);
         }
+    }
+
+    public void updateBlurVisibility() {
+
+        int QSBlurAlpha = Math.round(255.0f * mStaticNotificationPanel.getExpandedFraction());
+
+        if (QSBlurAlpha > 0 && !blurperformed && mState != StatusBarState.KEYGUARD) {
+            Bitmap bittemp = ImageUtilities.blurImage(mContext, ImageUtilities.screenshotSurface(mContext));
+            Drawable blurbackground = new BitmapDrawable(mContext.getResources(), bittemp);
+            blurperformed = true;
+            mQSBlurView.setBackgroundDrawable(blurbackground);
+        } else if (QSBlurAlpha == 0 || mState == StatusBarState.KEYGUARD) {
+            blurperformed = false;
+            mQSBlurView.setBackgroundColor(Color.TRANSPARENT);
+        }
+        mQSBlurView.setAlpha(QSBlurAlpha);
+        mQSBlurView.getBackground().setAlpha(QSBlurAlpha);
     }
 
     public static void setDismissAllVisible(boolean visible) {
