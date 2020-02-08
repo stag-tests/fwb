@@ -5747,7 +5747,6 @@ public final class Settings {
         private static final Validator LESS_BORING_HEADS_UP_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
-         * Whether to use wallpaper color for Ambient edge light (left)
          * @hide
          */
         public static final String PULSE_AMBIENT_LIGHT_AUTO_COLOR_LEFT = "pulse_ambient_light_auto_color_left";
@@ -5867,6 +5866,12 @@ public final class Settings {
          * @hide
          */
         public static final String FOD_PRESSED_STATE = "fod_pressed_state";
+
+        /**
+         * FOD recognizing animation picker
+         * @hide
+         */
+        public static final String FOD_ANIM = "fod_anim";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
