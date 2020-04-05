@@ -5888,6 +5888,14 @@ public final class Settings {
         private static final Validator FOD_ANIM_VALIDATOR =
                 new SettingsValidators.InclusiveIntegerRangeValidator(0, 17);
 
+       /**
+         * QS blur
+         * @hide
+         */
+        public static final String QS_BLUR = "qs_blur";
+        /** @hide */
+        private static final Validator QS_BLUR_VALIDATOR = BOOLEAN_VALIDATOR;
+
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
@@ -6038,6 +6046,11 @@ public final class Settings {
             FOD_PRESSED_STATE,
             FOD_RECOGNIZING_ANIMATION,
             FOD_ANIM,
+            LOCKSCREEN_CLOCK,
+            LOCKSCREEN_INFO,
+            TEXT_CLOCK_ALIGNMENT,
+            TEXT_CLOCK_PADDING,
+            QS_BLUR,
         };
 
         /**
@@ -6433,6 +6446,14 @@ public final class Settings {
             VALIDATORS.put(FOD_PRESSED_STATE, FOD_PRESSED_STATE_VALIDATOR);
             VALIDATORS.put(FOD_RECOGNIZING_ANIMATION, FOD_RECOGNIZING_ANIMATION_VALIDATOR);
             VALIDATORS.put(FOD_ANIM, FOD_ANIM_VALIDATOR);
+<<<<<<< HEAD
+=======
+            VALIDATORS.put(LOCKSCREEN_CLOCK, LOCKSCREEN_CLOCK_VALIDATOR);
+            VALIDATORS.put(LOCKSCREEN_INFO, LOCKSCREEN_INFO_VALIDATOR);
+            VALIDATORS.put(TEXT_CLOCK_ALIGNMENT, TEXT_CLOCK_ALIGNMENT_VALIDATOR);
+            VALIDATORS.put(TEXT_CLOCK_PADDING, TEXT_CLOCK_PADDING_VALIDATOR);
+            VALIDATORS.put(QS_BLUR, QS_BLUR_VALIDATOR);
+>>>>>>> 32fcf121556... Make QS blur togglable [1/2]
         }
 
         /**
