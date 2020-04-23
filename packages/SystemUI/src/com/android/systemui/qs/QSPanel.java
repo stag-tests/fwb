@@ -186,8 +186,6 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
         if (mBrightnessView != null) removeView(mBrightnessView);
 
         addQSPanel();
-=======
->>>>>>> a1e195fa43d... SystemUI: Port brightness slider changes
     }
 
     protected void addDivider() {

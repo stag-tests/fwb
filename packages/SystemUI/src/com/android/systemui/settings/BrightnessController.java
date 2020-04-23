@@ -50,7 +50,7 @@ import com.android.systemui.SystemUIFactory;
 
 import java.util.ArrayList;
 
-import com.android.systemui.R
+import com.android.systemui.R;
 
 public class BrightnessController implements ToggleSlider.Listener {
     private static final String TAG = "StatusBar.BrightnessController";
