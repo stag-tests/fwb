@@ -121,6 +121,8 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
 
     private int mBrightnessSlider = 1;
 
+    private View mBrightnessMirror;
+
     public QSPanel(Context context) {
         this(context, null);
     }
@@ -392,6 +394,8 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
                     .findViewById(R.id.brightness_slider);
             brightnessSlider.setMirror(mirrorSlider);
             brightnessSlider.setMirrorController(mBrightnessMirrorController);
+            mBrightnessMirror = mBrightnessMirrorController.getMirror();
+            mBrightnessController.setMirrorView(mBrightnessMirror);
         }
     }
 
