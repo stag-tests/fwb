@@ -72,13 +72,14 @@ public class BrightnessController implements ToggleSlider.Listener {
 
     private ImageView mMirrorIcon = null;
     private ImageView nMirrorIcon = null;
+    
+    private final ImageView nIcon;
+    private final ImageView mIcon;
 
-	private final ImageView nIcon;
     private int mSliderValue = 0;
     private int sliderMaxValue = 0;
 
     private final Context mContext;
-    private final ImageView mIcon;
     private final ToggleSlider mControl;
     private final boolean mAutomaticAvailable;
     private final DisplayManager mDisplayManager;
@@ -488,6 +489,7 @@ public class BrightnessController implements ToggleSlider.Listener {
             return;
         }
         final int sliderVal = convertLinearToGamma(val, min, max);
+        mSliderValue = sliderVal;
         animateSliderTo(sliderVal);
     }
 
