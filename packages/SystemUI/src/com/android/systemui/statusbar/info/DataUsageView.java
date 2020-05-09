@@ -27,6 +27,9 @@ public class DataUsageView extends TextView {
     private static boolean shouldUpdateData;
     private static boolean shouldUpdateDataTextView;
     private String formatedinfo;
+    private long start = 0;
+    private long current;
+    private long total;
 
     public DataUsageView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -63,8 +66,18 @@ public class DataUsageView extends TextView {
         mobileDataController.setSubscriptionId(
             SubscriptionManager.getDefaultDataSubscriptionId());
         final DataUsageController.DataUsageInfo info = mobileDataController.getDataUsageInfo();
-        
-        formatedinfo = formatDataUsage(info.usageLevel) + " " + mContext.getResources().getString(R.string.usage_data);
+
+        if(start == 0) {
+            start = info.usageLevel;
+            current = info.usageLevel;
+            total = current - start;
+        }
+        else {
+            current = info.usageLevel;
+            total = current - start;
+        }
+
+        formatedinfo = formatDataUsage(total) + " " + mContext.getResources().getString(R.string.usage_data);
         shouldUpdateDataTextView = true;
     }
 
